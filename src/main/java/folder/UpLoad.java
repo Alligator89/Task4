@@ -8,10 +8,7 @@ import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 import jakarta.servlet.http.Part;
 
-import java.io.FileInputStream;
-import java.io.FileOutputStream;
 import java.io.IOException;
-import java.io.PrintWriter;
 import java.time.LocalDateTime;
 
 @WebServlet("/load-book")
@@ -20,18 +17,10 @@ public class UpLoad extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws IOException, ServletException {
         Part filePart = req.getPart("file");
-        PrintWriter printWriter = resp.getWriter();
         String name = filePart.getSubmittedFileName();
         filePart.write("D:\\" + name);
-        FileInputStream fileInputStream = new FileInputStream("text.txt");
-        FileOutputStream fileOutputStream = new FileOutputStream("D:\\" + name);
-        int i = fileInputStream.read();
-        while (i != -1) {
-            i = fileInputStream.read();
-        }
-        printWriter.println("The file uploaded successfully" + LocalDateTime.now());
-        fileInputStream.close();
-        fileOutputStream.close();
+        resp.getWriter().print("The file uploaded successfully" + LocalDateTime.now());
+        System.out.println("The file uploaded successfully" + LocalDateTime.now());
     }
 }
 

@@ -6,7 +6,6 @@ import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 
-
 import java.io.*;
 import java.time.LocalDateTime;
 
@@ -18,7 +17,7 @@ public class Download extends HttpServlet {
 
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws IOException {
-        resp.setContentType("text/plain");
+        resp.setContentType("text/html");
         resp.setHeader("Content-disposition", "attachment; filename=text.txt");
 
         try (InputStream in = req.getServletContext().getResourceAsStream("/WEB-INF/text.txt");
@@ -31,6 +30,7 @@ public class Download extends HttpServlet {
                 out.write(buffer, 0, numBytesRead);
             }
             resp.getWriter().print("The file downloaded successfully" + LocalDateTime.now());
+            System.out.println("The file downloaded successfully" + LocalDateTime.now());
         }
     }
 }
