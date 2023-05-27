@@ -4,4 +4,10 @@
 
 <web-app>
   <display-name>Archetype Created Web Application</display-name>
+  <listener>
+    <listener-class>folder.StartApplicationListener</listener-class>
+  </listener>
+  <listener>
+    <listener-class>folder.RequestListener</listener-class>
+  </listener>
 </web-app>
